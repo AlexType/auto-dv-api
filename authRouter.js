@@ -21,5 +21,6 @@ router.post('/send-mail', controller.sendMail);
 router.get('/users', roleMiddleware(['ADMIN']), controller.getUsers);
 router.get('/reviews', controller.reviews);
 router.get('/popular-cars', controller.popularCars);
+router.get('/curr-rate', controller.currRate);
 
 module.exports = router;

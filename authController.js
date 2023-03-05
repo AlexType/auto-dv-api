@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const { secret } = require('./config');
+const request = require('request');
 
 const generateAccessToken = (id, roles) => {
   const payload = {
@@ -112,6 +113,16 @@ class authController {
           text: 'Через Инсту нашел и заинтересовался, а потом и созвонился. Итог- Выхватил гибрид Honda Vezel 18 года))). Менеджеру Максиму спасибо за профессионализм в работе. Покупка из Красноярска, все ОК. Рекомендую фирму))).',
         },
       ]);
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: 'Error )' });
+    }
+  }
+
+  async currRate(req, res) {
+    try {
+      const url = 'http://currate.ru/api/?get=rates&pairs=JPYRUB,EURRUB,USDRUB&key=71560a08ff5a9d61e342cf9af1d811d8';
+      request.get({ url }, (error, response, body) => res.json(JSON.parse(body)));
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: 'Error )' });
