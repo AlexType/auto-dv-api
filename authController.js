@@ -117,6 +117,18 @@ class authController {
       res.status(400).json({ message: 'Error )' });
     }
   }
+
+  async cars(req, res) {
+    try {
+      const mark = req.query.mark;
+      if (!mark) return res.json(await Auto.find());
+
+      return res.json(await Auto.find({ mark }));
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: 'Error )' });
+    }
+  }
 }
 
 module.exports = new authController();
