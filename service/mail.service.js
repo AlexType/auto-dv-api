@@ -16,7 +16,7 @@ class MailService {
   async sendMail(name, number, comment) {
     await this.transporter.sendMail({
       from: '914033@mail.ru',
-      to: '914033apleid@gmail.com',
+      to: 'asya2761313@bk.ru',
       subject: 'Заявка',
       html: `
       <div>
