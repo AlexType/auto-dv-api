@@ -1,5 +1,5 @@
 {
-  "name": "nodejs",
+  "name": "auto-dv-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,9 +7,10 @@
     "node": "14.x"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "lint:fix": "eslint --fix ./**/*.js"
   },
-  "author": "",
+  "author": "Alexandr Bryzgalov",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -21,5 +22,12 @@
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1"
   }
 }

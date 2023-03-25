@@ -6,7 +6,7 @@ const Review = new Schema({
   name: { type: String, required: true },
   rating: { type: String, required: true },
   text: { type: String, required: true },
-  date: { type: Date, required: true },
+  date: { type: Date, required: true }
 });
 
 module.exports = model('Review', Review);

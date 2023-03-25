@@ -1,15 +1,15 @@
 const Router = require('express');
 const router = new Router();
 const roleMiddleware = require('../middleware/role-middleware');
-const commonController = require('../controllers/common-controller');
+const CommonController = require('../controllers/common-controller');
 
-router.get('/cars', commonController.cars);
-router.get('/reviews', commonController.reviews);
-router.get('/curr-rate', commonController.currRate);
-router.get('/popular-cars', commonController.popularCars);
-router.get('/user-requests', roleMiddleware(['ADMIN']), commonController.userRequests);
-router.post('/send-mail', commonController.sendMail);
-router.post('/update-user-request', roleMiddleware(['ADMIN']), commonController.updateUserRequest);
-router.post('/delete-user-request', roleMiddleware(['ADMIN']), commonController.deleteUserRequest);
+router.get('/cars', CommonController.cars);
+router.get('/reviews', CommonController.reviews);
+router.get('/curr-rate', CommonController.currRate);
+router.get('/popular-cars', CommonController.popularCars);
+router.get('/user-requests', roleMiddleware(['ADMIN']), CommonController.userRequests);
+router.post('/send-mail', CommonController.sendMail);
+router.post('/update-user-request', roleMiddleware(['ADMIN']), CommonController.updateUserRequest);
+router.post('/delete-user-request', roleMiddleware(['ADMIN']), CommonController.deleteUserRequest);
 
 module.exports = router;

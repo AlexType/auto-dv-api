@@ -8,7 +8,7 @@ const Auto = new Schema({
   cc: { type: Number, required: true },
   engine: { type: Number, required: true },
   year: { type: Number, required: true },
-  price: { type: Number, required: true },
+  price: { type: Number, required: true }
 });
 
 module.exports = model('Auto', Auto);
