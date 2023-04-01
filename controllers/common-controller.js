@@ -3,8 +3,29 @@ const Review = require('../models/Review');
 const UserRequest = require('../models/UserRequest');
 const mailService = require('../service/mail.service');
 const request = require('request');
+const CarMark = require('../models/CarMark');
+const CarModel = require('../models/CarModel');
 
 class CommonController {
+  async marks (req, res) {
+    try {
+      return res.json(await CarMark.find());
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: 'Error )' });
+    }
+  }
+
+  async models (req, res) {
+    try {
+      const markId = req.query.markId;
+      return res.json(await CarModel.find({ markId }));
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: 'Error )' });
+    }
+  }
+
   async sendMail (req, res) {
     try {
       const { name, number, comment } = req.body;
@@ -58,6 +79,41 @@ class CommonController {
     }
   }
 
+  async addCar (req, res) {
+    try {
+      const { cc, engine, img, mark, model, price, year, availability } = req.body;
+      const newAuto = new Auto({ cc, engine, img, mark, model, price, year, availability });
+      await newAuto.save();
+
+      return res.json();
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: 'Error )' });
+    }
+  }
+
+  async updateCar (req, res) {
+    try {
+      const { id, availability } = req.body;
+      await Auto.findByIdAndUpdate(id, { availability });
+      return res.json();
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: 'Error )' });
+    }
+  }
+
+  async deleteCar (req, res) {
+    try {
+      const { id } = req.body;
+      await Auto.findByIdAndDelete(id);
+      return res.json();
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ message: 'Error )' });
+    }
+  }
+
   async userRequests (req, res) {
     try {
       return res.json(await UserRequest.find());
@@ -81,7 +137,7 @@ class CommonController {
   async deleteUserRequest (req, res) {
     try {
       const { id } = req.body;
-      await UserRequest.deleteOne(id);
+      await UserRequest.findByIdAndDelete(id);
       return res.json();
     } catch (e) {
       console.log(e);
